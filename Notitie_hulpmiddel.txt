@@ -1,5 +1,18 @@
 Notitie bij de opdracht als hulpmiddel.
 
+*Op zoek gaan naar API
+- dogapi: api_key=live_ue1OfMCwoonZxd78cGYDnIMulHPRW7CQELlXmAy0gp2sihdmiXiefvnppWsz2sbg
+
+* Wat gaan we filteren?
+- hondenrassen: Dog Breed
+
+
+* Wat gaan we sorteren?
+- levensverwachting: 
+    ° - van lang naar kort
+    ° - van kort naar lang
+
+
+
 * constructor toevoegen
-*
 <!--<canvas id="dogChart"></canvas>

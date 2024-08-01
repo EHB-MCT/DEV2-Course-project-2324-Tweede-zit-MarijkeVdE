@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<!--Marijke Van den Eede-->  
-<head>
-    <title>Eindopdracht API - 2de zitopdracht</title>
-    <!--<link href="assets/reset.css" rel="stylesheet" />-->
-    <link href="assets/style.css" rel="stylesheet" />
-    <script type="module" src="./js/index.js" defer></script>
-  </head>
-  <body>
-    <!--nog aan te passen titel, afhankelijk van de gekozen API-->
-    <div class="container">
-    <h1>Eindopdracht API - 2de zitopdracht</h1>
-    <div class="controls">
-      <!--afhankelijk van de API filter ik op type of iets anders-->
-      <select id="typeFilter">
-        <option value="">Alle Types</option>
-      </select>
-      <!--afhankelijk van de API sorteer ik op groot of klein, alfabetisch of dergelijke-->
-        <select id="sortGrootte">
-          <option value="">Sorteer grootte klein - groot</option>
-          <option value="">Sorteer grootte groot - klein</option>
-        </select>
-       
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
-		<script src="js/data.js"></script>
-		<script src="js/index.js"></script>
-        </div>
-  </body>
-</html>
+<!--Marijke Van den Eede-->
 
+<head>
+  <title>Hondenrassen - 2de zitopdracht</title>
+  <!--<link href="assets/reset.css" rel="stylesheet" />-->
+  <link href="assets/style.css" rel="stylesheet" />
+  <script type="module" src="./js/testfile.js" defer></script>
+</head>
+
+<body>
+ 
+<div class="container">
+  <h1>Hondenrassen - 2de zitopdracht</h1>
+  <div class="controls">
+    <select id="typeFilter">
+      <option value="">Alle Types</option>
+      <!-- Dynamisch ingevulde opties -->
+    </select>
+    
+    <select id="sort">
+      <option value="shortLive">Levensverwachting kort - lang</option>
+      <option value="longLive">Levensverwachting lang  - kort</option>
+    </select>
+  </div>
+  <div id="breedList">
+    <!-- Hier komen de resultaten -->
+  </div>
+</div>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+<!--<script src="js/data.js"></script>-->
+<!--<script src="js/testfile.js"></script>-->
+</body>
+
+</html>
