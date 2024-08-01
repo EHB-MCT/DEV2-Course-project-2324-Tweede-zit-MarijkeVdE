@@ -40,6 +40,7 @@ function displayBreeds(breeds) {
         breedItem.className = 'breed-item';
         breedItem.innerHTML = `
       <h3>${breed.name}</h3>
+      <img src="${imageUrl}" alt="${breed.name}" style="width:150px;height:150px;">
       <p>Levensverwachting: ${breed.life_span}</p>
       <p>Type: ${breed.breed_group || 'N/A'}</p>
     `;
