@@ -1,0 +1,5 @@
+Notitie bij de opdracht als hulpmiddel.
+
+* constructor toevoegen
+*
+<!--<canvas id="dogChart"></canvas>
