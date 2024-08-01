@@ -1,45 +1,86 @@
-function init() {
-    console.log("Let's start coding!");
-}
-// Endpoint URL van The Dog API
-const url = 'https://api.thedogapi.com/v1/breeds';
 const apiKey = 'live_ue1OfMCwoonZxd78cGYDnIMulHPRW7CQELlXmAy0gp2sihdmiXiefvnppWsz2sbg';
+const url = 'https://api.thedogapi.com/v1/breeds';
 
-// Functie om gegevens op te halen van The Dog API
-async function getDogBreeds() {
-  try {
-    const response = await fetch(url, {
-      headers: {
-        'x-api-key': live_ue1OfMCwoonZxd78cGYDnIMulHPRW7CQELlXmAy0gp2sihdmiXiefvnppWsz2sbg
-      }
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+// Fetch data van The Dog API
+async function fetchBreeds() {
+  const response = await fetch(url, {
+    headers: {
+      'x-api-key': apiKey
     }
-    const breeds = await response.json();
-
-    // Filteren op basis van een specifieke eigenschap, bijvoorbeeld hypoallergene honden
-    const hypoallergenicBreeds = breeds.filter(breed => breed.hypoallergenic === 1);
-
-    // Sorteren op levensverwachting
-    const sortedBreeds = hypoallergenicBreeds.sort((a, b) => {
-      const lifeSpanA = parseInt(a.life_span.split(' ')[0]);
-      const lifeSpanB = parseInt(b.life_span.split(' ')[0]);
-      return lifeSpanA - lifeSpanB;
-    });
-
-    // Print de gesorteerde lijst
-    sortedBreeds.forEach(breed => {
-      console.log(`Breed: ${breed.name}, Life Span: ${breed.life_span}`);
-    });
-
-  } catch (error) {
-    console.error('Error:', error);
-  }
+  });
+  const breeds = await response.json();
+  return breeds;
 }
 
-// Aanroep van de functie
-getDogBreeds();
+// Filter en sorteer de data
+function filterAndSortBreeds(breeds, filterValue, sortValue) {
+  let filteredBreeds = breeds;
 
+  // Filteren op type
+  if (filterValue) {
+    filteredBreeds = breeds.filter(breed => breed.breed_group && breed.breed_group.includes(filterValue));
+  }
 
-init()
+  // Sorteren op levensverwachting
+  if (sortValue === 'shortLive') {
+    filteredBreeds.sort((a, b) => parseInt(a.life_span) - parseInt(b.life_span));
+  } else if (sortValue === 'longLive') {
+    filteredBreeds.sort((a, b) => parseInt(b.life_span) - parseInt(a.life_span));
+  }
+
+  return filteredBreeds;
+}
+
+// Weergeven van de resultaten
+function displayBreeds(breeds) {
+  const breedList = document.getElementById('breedList');
+  breedList.innerHTML = '';
+  breeds.forEach(breed => {
+    const breedItem = document.createElement('div');
+    breedItem.className = 'breed-item';
+    breedItem.innerHTML = `
+      <h3>${breed.name}</h3>
+      <p>Levensverwachting: ${breed.life_span}</p>
+      <p>Type: ${breed.breed_group || 'N/A'}</p>
+    `;
+    breedList.appendChild(breedItem);
+  });
+}
+
+// Initialiseer de dropdown menu's
+function initializeDropdowns(breeds) {
+  const typeFilter = document.getElementById('typeFilter');
+  const breedGroups = [...new Set(breeds.map(breed => breed.breed_group).filter(Boolean))];
+  breedGroups.forEach(group => {
+    const option = document.createElement('option');
+    option.value = group;
+    option.textContent = group;
+    typeFilter.appendChild(option);
+  });
+}
+
+// Event listeners voor filteren en sorteren
+document.getElementById('typeFilter').addEventListener('change', async (e) => {
+  const filterValue = e.target.value;
+  const sortValue = document.getElementById('sort').value;
+  const breeds = await fetchBreeds();
+  const filteredAndSortedBreeds = filterAndSortBreeds(breeds, filterValue, sortValue);
+  displayBreeds(filteredAndSortedBreeds);
+});
+
+document.getElementById('sort').addEventListener('change', async (e) => {
+  const sortValue = e.target.value;
+  const filterValue = document.getElementById('typeFilter').value;
+  const breeds = await fetchBreeds();
+  const filteredAndSortedBreeds = filterAndSortBreeds(breeds, filterValue, sortValue);
+  displayBreeds(filteredAndSortedBreeds);
+});
+
+// Initialiseer de pagina
+async function init() {
+  const breeds = await fetchBreeds();
+  initializeDropdowns(breeds);
+  displayBreeds(breeds);
+}
+
+init();

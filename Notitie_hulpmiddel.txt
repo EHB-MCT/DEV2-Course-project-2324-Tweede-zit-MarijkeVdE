@@ -12,7 +12,6 @@ Notitie bij de opdracht als hulpmiddel.
     ° - van lang naar kort
     ° - van kort naar lang
 
-
-
-* constructor toevoegen
-<!--<canvas id="dogChart"></canvas>
+* CSS aanmaken - layout
+- werken met kolommen? - Hoeveel?
+* Hulp gevraagd aan chatGPT voor het nakijken van de code en de aanpassing ervan.
