@@ -21,33 +21,47 @@ function filterAndSortBreeds(breeds, filterValue, sortValue) {
     filteredBreeds = breeds.filter(breed => breed.breed_group && breed.breed_group.includes(filterValue));
   }
 
+  // filteren op herkomst
+
   // Sorteren op gewicht //
-  if (sortValue === 'minWeight') {
+  if (sortValue === 'weight') {
     filteredBreeds.sort((a, b) => parseInt(a.weight.imperial) - parseInt(b.weight.imperial));
-  } else if (sortValue === 'maxWeight') {
-    filteredBreeds.sort((a, b) => parseInt(b.weight.imperial) - parseInt(a.weight.imperial));
   }
 
-  
+  // Sorteren op herkomst - optie 1 //
+  if (sortValue === 'origin') {
+    filteredBreeds = sort((a, b) => parseInt(a.origin) - parseInt(b.origin));
+  }
+
+
   return filteredBreeds;
 }
 
-// Weergeven van de resultaten //
+// resultaat //
 function displayBreeds(breeds) {
   const breedList = document.getElementById('breedList');
   breedList.innerHTML = '';
+
   breeds.forEach(breed => {
     const breedItem = document.createElement('div');
     breedItem.className = 'breed-item';
+
+    // Vooraf gedefinieerde afbeelding of standaardafbeelding gebruiken //
+    // - hulp van chatGPT bij het weergeven van de afbeeldingen //
+    const imageUrl = breed.image && breed.image.url ? breed.image.url : 'https://via.placeholder.com/150';
+
     breedItem.innerHTML = `
       <h3>${breed.name}</h3>
-      <p>Gewicht: ${breed.weight.imperial}</p>
+      <img src="${imageUrl}" alt="${breed.name}" style="width:150px;height:auto;">
+      <p>Gewicht: ${breed.weight.imperial} lbs</p>
       <p>Type: ${breed.breed_group || 'N/A'}</p>
-      <p>Afkomst:
     `;
     breedList.appendChild(breedItem);
   });
+
+  updateChart(breeds);
 }
+
 
 // Initialiseer de dropdown menu's //
 function initializeDropdowns(breeds) {
@@ -78,7 +92,7 @@ document.getElementById('sort').addEventListener('change', async (e) => {
   displayBreeds(filteredAndSortedBreeds);
 });
 
-// Initialiseer de pagina
+// Pagina initialiseren
 async function init() {
   const breeds = await fetchBreeds();
   initializeDropdowns(breeds);
