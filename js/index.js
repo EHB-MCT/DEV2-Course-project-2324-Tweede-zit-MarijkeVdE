@@ -12,26 +12,27 @@ async function fetchBreeds() {
   return breeds;
 }
 
-// Filter en sorteer de data
+// Filter en sorteer de data //
 function filterAndSortBreeds(breeds, filterValue, sortValue) {
   let filteredBreeds = breeds;
 
-  // Filteren op type
+  // Filteren op type //
   if (filterValue) {
     filteredBreeds = breeds.filter(breed => breed.breed_group && breed.breed_group.includes(filterValue));
   }
 
-  // Sorteren op levensverwachting
-  if (sortValue === 'shortLive') {
-    filteredBreeds.sort((a, b) => parseInt(a.life_span) - parseInt(b.life_span));
-  } else if (sortValue === 'longLive') {
-    filteredBreeds.sort((a, b) => parseInt(b.life_span) - parseInt(a.life_span));
+  // Sorteren op gewicht //
+  if (sortValue === 'minWeight') {
+    filteredBreeds.sort((a, b) => parseInt(a.weight.imperial) - parseInt(b.weight.imperial));
+  } else if (sortValue === 'maxWeight') {
+    filteredBreeds.sort((a, b) => parseInt(b.weight.imperial) - parseInt(a.weight.imperial));
   }
 
+  
   return filteredBreeds;
 }
 
-// Weergeven van de resultaten
+// Weergeven van de resultaten //
 function displayBreeds(breeds) {
   const breedList = document.getElementById('breedList');
   breedList.innerHTML = '';
@@ -40,14 +41,15 @@ function displayBreeds(breeds) {
     breedItem.className = 'breed-item';
     breedItem.innerHTML = `
       <h3>${breed.name}</h3>
-      <p>Levensverwachting: ${breed.life_span}</p>
+      <p>Gewicht: ${breed.weight.imperial}</p>
       <p>Type: ${breed.breed_group || 'N/A'}</p>
+      <p>Afkomst:
     `;
     breedList.appendChild(breedItem);
   });
 }
 
-// Initialiseer de dropdown menu's
+// Initialiseer de dropdown menu's //
 function initializeDropdowns(breeds) {
   const typeFilter = document.getElementById('typeFilter');
   const breedGroups = [...new Set(breeds.map(breed => breed.breed_group).filter(Boolean))];
@@ -59,7 +61,7 @@ function initializeDropdowns(breeds) {
   });
 }
 
-// Event listeners voor filteren en sorteren
+// Event listeners voor filteren en sorteren //
 document.getElementById('typeFilter').addEventListener('change', async (e) => {
   const filterValue = e.target.value;
   const sortValue = document.getElementById('sort').value;
