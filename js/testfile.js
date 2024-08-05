@@ -21,12 +21,12 @@ function filterAndSortBreeds(breeds, filterValue, sortValue) {
         filteredBreeds = breeds.filter(breed => breed.breed_group && breed.breed_group.includes(filterValue));
     }
 
-    // Sorteren op levensverwachting
-    if (sortValue === 'shortLive') {
-        filteredBreeds.sort((a, b) => parseInt(a.life_span) - parseInt(b.life_span));
-    } else if (sortValue === 'longLive') {
-        filteredBreeds.sort((a, b) => parseInt(b.life_span) - parseInt(a.life_span));
-    }
+    // Sorteren op gewicht //
+  if (sortValue === 'minWeight') {
+    filteredBreeds.sort((a, b) => parseInt(a.minWeight.imperial.split(' ')[0]) - parseInt(b.maxWeight.imperial.split(' ')[0]));
+  } else if (sortValue === 'maxWeight') {
+    filteredBreeds.sort((a, b) => parseInt(b.maxWeight.imperial.split(' ')[0]) - parseInt(a.minWeight.imperial.split(' ')[0]));
+  }
 
     return filteredBreeds;
 }

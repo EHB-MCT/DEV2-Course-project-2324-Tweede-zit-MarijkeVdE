@@ -16,28 +16,22 @@ async function fetchBreeds() {
 function filterAndSortBreeds(breeds, filterValue, sortValue) {
   let filteredBreeds = breeds;
 
-  // Filteren op type //
+  // Filteren op type hond //
   if (filterValue) {
     filteredBreeds = breeds.filter(breed => breed.breed_group && breed.breed_group.includes(filterValue));
   }
 
-  // filteren op herkomst
-
-  // Sorteren op gewicht //
-  if (sortValue === 'weight') {
-    filteredBreeds.sort((a, b) => parseInt(a.weight.imperial) - parseInt(b.weight.imperial));
+  // Sorteren op gewicht - 1ste gewichtsklasse //
+  if (sortValue === 'minWeight') {
+    filteredBreeds.sort((a, b) => parseInt(a.weight.imperial.split(' ')[0]) - parseInt(b.weight.imperial.split(' ')[0]));
+  } else if (sortValue === 'maxWeight') {
+    filteredBreeds.sort((a, b) => parseInt(b.weight.imperial.split(' ')[0]) - parseInt(a.weight.imperial.split(' ')[0]));
   }
-
-  // Sorteren op herkomst - optie 1 //
-  if (sortValue === 'origin') {
-    filteredBreeds = sort((a, b) => parseInt(a.origin) - parseInt(b.origin));
-  }
-
 
   return filteredBreeds;
 }
 
-// resultaat //
+// Resultaat //
 function displayBreeds(breeds) {
   const breedList = document.getElementById('breedList');
   breedList.innerHTML = '';
@@ -63,9 +57,10 @@ function displayBreeds(breeds) {
 }
 
 
-// Initialiseer de dropdown menu's //
+// Dropdown menu's //
 function initializeDropdowns(breeds) {
   const typeFilter = document.getElementById('typeFilter');
+
   const breedGroups = [...new Set(breeds.map(breed => breed.breed_group).filter(Boolean))];
   breedGroups.forEach(group => {
     const option = document.createElement('option');
@@ -73,6 +68,7 @@ function initializeDropdowns(breeds) {
     option.textContent = group;
     typeFilter.appendChild(option);
   });
+
 }
 
 // Event listeners voor filteren en sorteren //
@@ -84,6 +80,7 @@ document.getElementById('typeFilter').addEventListener('change', async (e) => {
   displayBreeds(filteredAndSortedBreeds);
 });
 
+
 document.getElementById('sort').addEventListener('change', async (e) => {
   const sortValue = e.target.value;
   const filterValue = document.getElementById('typeFilter').value;
@@ -91,6 +88,7 @@ document.getElementById('sort').addEventListener('change', async (e) => {
   const filteredAndSortedBreeds = filterAndSortBreeds(breeds, filterValue, sortValue);
   displayBreeds(filteredAndSortedBreeds);
 });
+
 
 // Pagina initialiseren
 async function init() {
