@@ -1,3 +1,5 @@
+// Marijke Van den Eede //
+
 const apiKey = 'live_ue1OfMCwoonZxd78cGYDnIMulHPRW7CQELlXmAy0gp2sihdmiXiefvnppWsz2sbg';
 const url = 'https://api.thedogapi.com/v1/breeds';
 
