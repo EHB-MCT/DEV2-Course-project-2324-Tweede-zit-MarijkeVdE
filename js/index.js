@@ -12,7 +12,7 @@ async function fetchBreeds() {
   return breeds;
 }
 
-// Filter en sorteer de data //
+// Data filteren en sorteren //
 function filterAndSortBreeds(breeds, filterValue, sortValue) {
   let filteredBreeds = breeds;
 
@@ -21,7 +21,7 @@ function filterAndSortBreeds(breeds, filterValue, sortValue) {
     filteredBreeds = breeds.filter(breed => breed.breed_group && breed.breed_group.includes(filterValue));
   }
 
-  // Sorteren op gewicht - 1ste gewichtsklasse //
+  // Sorteren op gewicht - gebruik gemaakt van chatGPT voor het sorteren op 1ste gewichtsklasse //
   if (sortValue === 'minWeight') {
     filteredBreeds.sort((a, b) => parseInt(a.weight.imperial.split(' ')[0]) - parseInt(b.weight.imperial.split(' ')[0]));
   } else if (sortValue === 'maxWeight') {
@@ -41,12 +41,12 @@ function displayBreeds(breeds) {
     breedItem.className = 'breed-item';
 
     // Vooraf gedefinieerde afbeelding of standaardafbeelding gebruiken //
-    // - hulp van chatGPT bij het weergeven van de afbeeldingen //
+    // - hulp van chatGPT bij het weergeven van de afbeeldingen - werden niet zichtbaar door verkeerde URL//
     const imageUrl = breed.image && breed.image.url ? breed.image.url : 'https://via.placeholder.com/150';
 
     breedItem.innerHTML = `
       <h3>${breed.name}</h3>
-      <img src="${imageUrl}" alt="${breed.name}" style="width:150px;height:auto;">
+      <img src="${imageUrl}" alt="${breed.name}" >
       <p>Gewicht: ${breed.weight.imperial} lbs</p>
       <p>Type: ${breed.breed_group || 'N/A'}</p>
     `;
@@ -55,7 +55,6 @@ function displayBreeds(breeds) {
 
   updateChart(breeds);
 }
-
 
 // Dropdown menu's //
 function initializeDropdowns(breeds) {

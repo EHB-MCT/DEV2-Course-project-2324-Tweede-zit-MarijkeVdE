@@ -4,14 +4,26 @@ Notitie bij de opdracht als hulpmiddel.
 - dogapi: api_key=live_ue1OfMCwoonZxd78cGYDnIMulHPRW7CQELlXmAy0gp2sihdmiXiefvnppWsz2sbg
 
 * Wat gaan we filteren?
-- hondenrassen: Dog Breed
+- Type hondenrassen = breed
 
 
 * Wat gaan we sorteren?
-- levensverwachting: 
-    ° - van lang naar kort
-    ° - van kort naar lang
+- Gewicht: 
+    ° van minimum gewicht (minWeight) naar maximum gewicht (maxWeight)
+    ° van maximum gewicht (maxWeight) naar minimum gewicht (minWeight)
+
+* Tonen van afbeeldingen van de hondenrassen volgens filter (gebruik gemaakt van chatGPT voor weergave, kwam er niet door)
+
+* Chart = niet gelukt, moet dit nog eens beter bestuderen
 
 * CSS aanmaken - layout
-- werken met kolommen? - Hoeveel?
-* Hulp gevraagd aan chatGPT voor het nakijken van de code en de aanpassing ervan.
+- Werken met raster
+- Kleuren op elkaar afgestemd
+- Grid = flex, past zich aan bij aanpassen pagina
+
+Gebruik gemaakt van de "DogAPI" via onderstaande website - Via chatGPT aan deze sleutel bekomen.
+https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=FJkYOq9tW
+de API-key: live_ue1OfMCwoonZxd78cGYDnIMulHPRW7CQELlXmAy0gp2sihdmiXiefvnppWsz2sbg
+Deze website ook gebruikt om verder te zoeken op de code - ook gebruik gemaakt van W3schools en enkele codes via chatGPT (staat erbij genoteerd)
+
+

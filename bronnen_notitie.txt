@@ -1,0 +1,13 @@
+Notitie bij de opdracht als hulpmiddel.
+
+Gebruik gemaakt van de "DogAPI" via onderstaande website - Via chatGPT aan deze sleutel bekomen.
+https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=FJkYOq9tW
+de API-key: live_ue1OfMCwoonZxd78cGYDnIMulHPRW7CQELlXmAy0gp2sihdmiXiefvnppWsz2sbg
+
+Bovenstaande website ook gebruikt om verder te zoeken op de code
+
+Ook gebruik gemaakt van:
+- W3schools 
+- Enkele codes via chatGPT (staat erbij genoteerd) 
+
+
