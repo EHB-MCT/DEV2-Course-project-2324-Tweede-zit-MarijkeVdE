@@ -20,7 +20,7 @@ function filterAndSortBreeds(breeds, filterValue, sortValue) {
 
   // Filteren op type hond //
   if (filterValue) {
-    filteredBreeds = breeds.filter(breed => breed.breed_group && breed.breed_group.includes(filterValue));
+    filteredBreeds = breeds.filter(breed => breed.breed_group?.includes(filterValue));
   }
 
   // Sorteren op gewicht - gebruik gemaakt van chatGPT voor het sorteren op 1ste gewichtsklasse //
@@ -46,7 +46,7 @@ function displayBreeds(breeds) {
 
     // Vooraf gedefinieerde afbeelding of standaardafbeelding gebruiken //
     // - hulp van chatGPT bij het weergeven van de afbeeldingen - werden niet zichtbaar door verkeerde URL//
-    const imageUrl = breed.image && breed.image.url ? breed.image.url : 'https://via.placeholder.com/150';
+    const imageUrl = breed.image?.url || 'https://via.placeholder.com/150';
 
     breedItem.innerHTML = `
       <h3>${breed.name}</h3>
