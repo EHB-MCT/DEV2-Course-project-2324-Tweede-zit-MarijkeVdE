@@ -9,12 +9,13 @@ Notitie bij de opdracht als hulpmiddel.
 
 * Wat gaan we sorteren?
 - Gewicht: 
+    ° gewichten door elkaar,  niet gesorteerd (allWeight)
     ° van minimum gewicht (minWeight) naar maximum gewicht (maxWeight)
     ° van maximum gewicht (maxWeight) naar minimum gewicht (minWeight)
 
 * Tonen van afbeeldingen van de hondenrassen volgens filter (gebruik gemaakt van chatGPT voor weergave, kwam er niet door)
 
-* Chart = niet gelukt, moet dit nog eens beter bestuderen
+* Chart = niet gelukt, ontbreekt
 
 * CSS aanmaken - layout
 - Werken met raster

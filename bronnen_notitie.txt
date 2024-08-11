@@ -8,6 +8,6 @@ Bovenstaande website ook gebruikt om verder te zoeken op de code
 
 Ook gebruik gemaakt van:
 - W3schools 
-- Enkele codes via chatGPT (staat erbij genoteerd) 
+- Afbeeldingen die niet werden weergegeven -> codes via chatGPT (staat erbij genoteerd) 
 
 

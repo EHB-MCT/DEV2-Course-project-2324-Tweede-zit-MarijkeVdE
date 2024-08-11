@@ -24,7 +24,9 @@ function filterAndSortBreeds(breeds, filterValue, sortValue) {
   }
 
   // Sorteren op gewicht - gebruik gemaakt van chatGPT voor het sorteren op 1ste gewichtsklasse //
-  if (sortValue === 'minWeight') {
+  if (sortValue === 'allWeight') {
+    filteredBreeds.sort(() => Math.random());
+  } else if (sortValue === 'minWeight') {
     filteredBreeds.sort((a, b) => parseInt(a.weight.imperial.split(' ')[0]) - parseInt(b.weight.imperial.split(' ')[0]));
   } else if (sortValue === 'maxWeight') {
     filteredBreeds.sort((a, b) => parseInt(b.weight.imperial.split(' ')[0]) - parseInt(a.weight.imperial.split(' ')[0]));
@@ -49,7 +51,7 @@ function displayBreeds(breeds) {
     breedItem.innerHTML = `
       <h3>${breed.name}</h3>
       <img src="${imageUrl}" alt="${breed.name}" >
-      <p>Gewicht: ${breed.weight.imperial} lbs</p>
+      <p>Gewicht: ${breed.weight.imperial} kg</p>
       <p>Type: ${breed.breed_group || 'N/A'}</p>
     `;
     breedList.appendChild(breedItem);
